@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>일기예보</title>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="./css/reset.css">
-
     <link rel="stylesheet" href="./css/style.css">
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 </head>
-<body>
+<body data-weather="sunny">
     <section class="hero-photo">
         <div class="hero-inner">
-            <h1> 일기 예보 페이지</h1>
+            <h1 class="hero-title"> 일기 예보 페이지</h1>
             <form action="" id="cityInput" class="search-form">
-                <input type="text" id="cityName" autocomplete="off">
+                <input type="text" id="cityName" placeholder="도시 이름을 입력하세요(예시: 순천)" autocomplete="off">
                 <button type="submit">검색</button>
             </form>
         </div>
     </section>
+    
 </body>
 </html>
