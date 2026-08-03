@@ -205,8 +205,27 @@ $(function () {
                 }
             }
             $("#cityList").html(rows);
+
+            const hotname = HOME_CITIES[hotIdx];
+            const coldname = HOME_CITIES[coldIdx];
+            const hotcity = FALLBACK_CITIES[hotname];
+            const coldcity = FALLBACK_CITIES[coldname];
+
+            $("#hotcity").data({
+                name: hotname,
+                lat: hotcity.lat,
+                lon: hotcity.lon
+            })
+            $("#hotcity .extream-value")
+                .html(hotname + " " + safeRound(results[hotIdx].daily.temperature_2m_max[0]) + "°");
+
+            $("#coldcity") 
+                .data({name: coldname, lat: coldcity.lat, lon: coldcity.lon})
+                .find(".extream-value")
+                .html(coldname + " " + safeRound(results[coldIdx].daily.temperature_2m_min[0]) + "°");
+
         })
-        .fail(function() { a
+        .fail(function() { 
             alert("주요 도시 날씨를 불러오지 못했습니다.")
         });
     }
