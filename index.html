@@ -21,6 +21,7 @@
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./js/script.js"></script>
 </head>
 <!-- API 를 통해 날씨 데이터를 저장하여 날씨에 따른 배경을 설정 -->
 
@@ -41,7 +42,7 @@
     </section>
 
     <!-- 홈 화면: 주요 도시 리스트 + 세계 리스트 -->
-    <div id="screen-home" class="screen" hidden>
+    <div id="screen-home" class="screen">
         <div class="page-content">
             <div class="page-content-inner">
                 <div class="home-top">
@@ -109,14 +110,14 @@
 
                 <div class="footer-home">
                     <p>Data by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a></p>
-                    <p>미래유망 강사 김기호</p>
+                    <p>순천효산고등학교 박예찬</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- 디테일 화면: 주간 날씨 + 시간별 날씨 -->
-    <div id="screen-detail" class="screen screen-detail">
+    <div id="screen-detail" class="screen screen-detail" hidden>
         <header class="detail-header">
             <button type="button" id="backBtn" class="back-btn">← 목록으로</button>
         </header>
@@ -135,11 +136,74 @@
                     <button type="button" class="tab-btn" data-tab="hourly" role="tab" aria-selected="false">시간별 날씨</button>
                 </div>
 
+                <!-- 탭 1: 주간 날씨(현재 날씨 카드 기본 골격) -->
+                <div id="panel-summary" class="tab-pannel" role="tabpanel">
+                    <section id="currentCard" class="current-card">
+                        <div id="currentContent" class="current-content">
+                            <h2 id="locationName" class="location">도시 이름</h2>
+                            <p id="updatedTime" class="updated">-</p>
 
+                            <!-- 날씨 정보 -->
+                            <div class="temp-row">
+                                <img src="./icons/clear-day.svg" alt="" class="weatherIcon weather-icon">
+                                <span id="temperature" class="temp">--°</span>
+                            </div>
+                            <p id="weatherDesc" class="desc">-</p>
+
+                            <!-- 하위 정보(체감, 습도, 풍속, 강수확률) -->
+                            <div class="sub-info">
+                                <div class="sub-item">
+                                    <span class="sub-label">체감</span>
+                                    <span id="feelsLike">--°</span>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-label">습도</span>
+                                    <span id="humidity">--%</span>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-label">풍속</span>
+                                    <span id="windSpeed">--km/h</span>
+                                </div>
+                                <div class="sub-item">
+                                    <span class="sub-label">강수확률</span>
+                                    <span id="precipProb">--%</span>
+                                </div>
+                            </div>
+
+                            <!-- 일출/일몰 정보 -->
+                            <div id="sunInfo" class="sun-info">
+                                <span>🌅일출 <span class="sunriseTime">--:--</span></span>
+                                <span>🌇일몰 <span class="sunsetTime">--:--</span></span>
+                            </div>
+
+                            <!-- 미세먼지/초미세먼지 정보 -->
+                            <div id="airInfo" class="air-info">
+                                <div id="pm10Badge" class="air-badge grade-good">미세먼지 -</div>
+                                <div id="pm25Badge" class="air-badge grade-bad">초미세먼지 -</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- 주간 날씨 정보(JS 추가 예정) -->
+                    <section id="forecastRow" class="forecast-row"></section>
+
+                </div>
+
+                <!-- 탭 2: 시간별 날씨 -->
+                <!--  - 임시 데이터 2개 -->
+                <div id="panel-hourly" class="tab-pannel" role="tabpanel" hidden>
+                    <section class="hourly-list-card">
+                        <!-- 시간별 날씨 정보(JS 로 추가) -->
+                        <div id="hourlyList" class="hourly-list">
+
+                        </div>
+                    </section>
+                </div>
             </main>
+
+            <div class="footer-detail">
+                <p>Data by <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a></p>
+                <p>순천효산고등학교 박예찬</p>
+            </div>
         </div>
     </div>
-
-</body>
-
-</html>

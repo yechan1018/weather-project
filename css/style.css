@@ -65,9 +65,9 @@ body {
     outline-offset: 2px;
 }
 
-.weath-icon,
+.weather-icon,
 .city-row-icon,
-.forecast-con,
+.forecast-icon,
 .hour-icon {
     background: linear-gradient(
                     160deg, 
@@ -142,6 +142,7 @@ body {
 }
 .search-form button:hover { opacity: 0.85; }
 
+.screen[hidden] { display: none; }
 
 /* 홈 컨텐츠 영역 */
 .page-content {
@@ -290,10 +291,16 @@ body {
     color: var(--color-ink);
 }
 
+/* ---------------------------------------------------------- */
+/* hidden 속성 강제 적용 */
+/*  - .tab-bar, .tab-pannel 에 display:flex; 를 지정했기 때문에 */
+/*    hidden 속성이 우선 순위에 밀려 숨겨지지 않는다. */
+/* ---------------------------------------------------------- */
+.sreen[hidden] { display: none; }
+
 /* ------------------------------------------------------ */
 /* 디테일 화면 */
 /* ------------------------------------------------------ */
-
 .screen-detail {
     display: flex;
     flex-direction: column;
@@ -377,4 +384,279 @@ body {
 .tab-btn.active {
     background-color: var(--color-white);
     color: var(--color-ink);
+}
+
+/* 탭 패널 */
+.tab-pannel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-xl);
+}
+
+/* ---------------------------------------------------------- */
+/* hidden 속성 강제 적용 */
+/*  - .tab-bar, .tab-pannel 에 display:flex; 를 지정했기 때문에 */
+/*    hidden 속성이 우선 순위에 밀려 숨겨지지 않는다. */
+/* ---------------------------------------------------------- */
+.tab-bar[hidden],
+.tab-pannel[hidden] { display: none; }
+
+/* 현재 날씨 카드 */
+.current-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-3xl) var(--sp-2xl);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.current-content {
+    width: 100%;
+    text-align: center;
+}
+
+.location {
+    font-size: var(--fs-lg);
+    font-weight: 700;
+}
+.updated {
+    margin-top: var(--sp-xs);
+    font-size: var(--fs-xs);
+    color: var(--color-ink-sub);
+}
+
+.temp-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-md);
+    margin-top: var(--sp-md);
+}
+
+.weather-icon {
+    width: 76px;
+    height: 76px;
+}
+.temp {
+    font-size: var(--fs-temp);
+    font-weight: 900;
+    line-height: 1;
+}
+.desc {
+    margin-top: var(--sp-xs);
+    font-size: var(--fs-base);
+    color: var(--color-ink-sub);
+}
+
+.sub-info {
+    margin-top: var(--sp-2xl);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    border-top: 1px solid rgba(38, 49, 60, 0.15);
+    padding-top: var(--sp-lg);
+    /* 수직 간격 */
+    row-gap: var(--sp-lg);
+}
+
+.sub-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-xs);
+    font-size: var(--fs-base);
+    font-weight: 500;
+}
+
+.sub-label {
+    font-size: var(--fs-xs);
+    font-weight: 400;
+    color: var(--color-ink-sub);
+}
+
+.sun-info {
+    margin-top: var(--sp-lg);
+    display: flex;
+    justify-content: center;
+    gap: var(--sp-2xl);
+    font-size: var(--fs-sm);
+    color: var(--color-ink-sub);
+}
+
+.air-info {
+    margin-top: var(--sp-md);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--sp-sm);
+}
+
+.air-badge {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    padding: var(--sp-xs) var(--sp-md);
+    background-color: rgba(38, 49, 60, 0.08);
+    border-radius: 1000px;
+    color: var(--color-ink-sub);
+}
+
+.air-badge.grade-good       { background: rgba(46, 160, 90, 0.15); color: #2e8b50; }
+.air-badge.grade-normal     { background: rgba(64, 120, 200, 0.15); color: #3a6fc0; }
+.air-badge.grade-bad        { background: rgba(230, 150, 40, 0.15); color: #c07a10; }
+.air-badge.grade-verybad    { background: rgba(210, 60, 60, 0.15); color: #c03030; }
+
+/* 주간 날씨 카드 5일치 */
+.forecast-row {
+    display: flex;
+    gap: var(--sp-sm);
+    padding-bottom: var(--sp-xs);
+
+    /* 영역이 부족하면 스크롤 생성 */
+    overflow: auto;
+    /* 스크롤 바를 놓을 때 카드 경계에 맞춰 자연스럽게 정렬 */
+    scroll-snap-type: x proximity;
+}
+
+.forecast-card {
+    flex: 1 0 0;
+    min-width: 72px;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-md);
+    padding: var(--sp-lg) var(--sp-sm);
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    scroll-snap-align: start;
+    line-height: 1.6;
+}
+
+@media screen and (max-width:480px) {
+    .forecast-card {
+        flex: 1 0 25%;
+    }
+}
+
+.forecast-label {
+    font-size: var(--fs-md);
+    font-weight: 700;
+    color: var(--color-ink-sub);
+}
+.forecast-icon {
+    display: block;
+    width: 44px;
+    height: 44px;
+    margin: var(--sp-sm) auto;
+}
+.forecast-max { font-size: var(--fs-lg); font-weight: 700; }
+.forecast-min { font-size: var(--fs-sm); font-weight: 400; color: var(--color-ink-sub); }
+.forecast-precip { margin-top: var(--sp-xs); font-size: var(--fs-sm); color: var(--color-accent);}
+
+/* 시간별 날씨 리스트 */
+.hourly-list-card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--sp-sm) var(--sp-xl);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.hour-row:not(:last-child) {
+    border-bottom: 1px solid rgba(38, 49, 60, 0.1);
+}
+
+.hour-row-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-sm);
+    background: transparent;
+    border: none;
+    padding: var(--sp-lg) 0;
+    font-family: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.hour-main {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-md);
+}
+
+.hour-time-col {
+    display: flex;
+    flex-direction: column;
+    min-width: 64px;
+}
+.hour-time { 
+    font-size: var(--fs-md);
+    font-weight: 700;
+}
+.hour-desc { 
+    font-size: var(--fs-sm);
+    color: var(--color-ink-sub);
+}
+.hour-icon {
+    width: 36px;
+    height: 36px;
+}
+.hour-temp {
+    font-size: var(--fs-lg);
+    font-weight: 800;
+    min-width: 36px;
+}
+.hour-side {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-sm);
+}
+
+.hour-realfeel,
+.hour-precip {
+    font-size: var(--fs-sm);
+    color: var(--color-ink-sub);
+    white-space: nowrap;
+}
+
+.hour-chevron {
+    font-size: var(--fs-base);
+    color: var(--color-ink-sub);
+    display: inline-block;
+    transition: transform 200ms;
+}
+
+.hour-row.open .hour-chevron { 
+    transform: rotate(180deg);
+}
+
+.hour-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-sm) var(--sp-lg);
+    padding: 0 var(--sp-xs) var(--sp-lg);
+    font-size: var(--fs-md);
+}
+
+.hour-detail-item {
+    /* 6개의 항목 = 2행 3열로 나열 */
+    /*  - 한 줄에 3개씩 두 줄 */
+    /* 각 요소의 크기 = (100% - 간격크기*간격개수) / 요소의수 */
+    flex: 0 0 calc((100% - var(--sp-lg) * 2) / 3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-xs);
+    color: var(--color-ink-sub);
+}
+
+.hour-detail-item span { font-size: 0.9em;}
+.hour-detail-item strong { color: var(--color-ink); font-weight: 600;}
+
+/* 푸터 */
+.footer-detail {
+    text-align: center;
+    font-size: var(--fs-xs);
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    line-height: 1.6;
+}
+.footer-detail a {
+    color: var(--color-white);
 }
